@@ -1,0 +1,113 @@
+﻿<Window x:Class="DeveloperTestNet5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:my="clr-namespace:DeveloperTestNet5"
+        xmlns:i18n="clr-namespace:DeveloperTestNet5.i18n"
+        xmlns:myc="clr-namespace:DeveloperTestNet5.ViewModels.Converters"
+        xmlns:em="clr-namespace:DeveloperTestNet5.Models"
+        mc:Ignorable="d"
+        Title="{i18n:Loc WindowTitle}" Height="740" Width="1297"        
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}"
+        >
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="400"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="{i18n:Loc VM_ServerType}" Grid.Column="0" Grid.Row="0"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" Margin="2"
+                  ItemsSource="{Binding Source={myc:Enumeration {x:Type my:MailServerTypes}}}"
+                  DisplayMemberPath="Description"
+                  SelectedValue="{Binding MailServerType}"
+                  SelectedValuePath="Value"
+                  />
+                <Label Content="Encryption" Grid.Row="0" Grid.Column="2"/>
+                <ComboBox Grid.Row="0" Grid.Column="3" Margin="2"
+                  ItemsSource="{Binding Source={myc:Enumeration {x:Type my:EncryptionOptions}}}"
+                  DisplayMemberPath="Description"
+                  SelectedValue="{Binding Encryption}"
+                  SelectedValuePath="Value"
+                  />
+                <Label Content="Username" Grid.Row="1" Grid.Column="2"/>
+                <TextBox Grid.Row="1" Grid.Column="3" Margin="2" Text="{Binding Username}"/>
+                <Label Content="Password" Grid.Row="2" Grid.Column="2"/>                
+                <PasswordBox Grid.Row="2" Grid.Column="3" Margin="2" Name="server_password" PasswordChanged="OnPasswordChanged" />
+
+                
+                <Label Content="{i18n:Loc VM_Server}" Grid.Column="0" Grid.Row="1"/>
+                <TextBox Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Server}" Margin="2" />
+                <Label Content="Port" Grid.Column="0" Grid.Row="2"/>
+                <TextBox Grid.Row="2" Grid.Column="1"  TextWrapping="Wrap" Text="{Binding Port}" Margin="2"/>
+
+                <Button Content="{i18n:Loc VM_Start}" Grid.Row="3" Grid.Column="3" Padding="50 10" Margin="5" HorizontalAlignment="Right" MaxWidth="200" Command="{Binding StartCommand}"/>
+
+                <StackPanel VerticalAlignment="Top" Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="4">
+                    <Label>Emails:</Label>
+                    <Label Content="{Binding Context.NumEmails}"/>
+                    <Label>Loaded:</Label>
+                    <Label Content="{Binding Context.NumEmailBodiesLoaded}"/>
+                    <Label>Workers:</Label>
+                    <Label Content="{Binding Context.NumWorkerThreads}"/>
+                </StackPanel>
+                
+                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" Content="{i18n:Loc VM_Language}" Margin="0 2"/>
+                <ComboBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" Margin="2"
+                          ItemsSource="{Binding AvailableCultures}"
+                          SelectedItem="{Binding Translation.CurrentCulture}"
+                          DisplayMemberPath="Name"
+                          />
+            </Grid>
+            <Grid Grid.Row="1">
+
+                <DataGrid ItemsSource="{Binding EmailView, Mode=OneWay}" SelectedItem="{Binding SelectedEmail}" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" EnableRowVirtualization="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding DateTime}" SortDirection="Descending" Header="{i18n:Loc VM_Date}"/>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding FromString}" Header="{i18n:Loc VM_From}"/>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding Subject}" Header="{i18n:Loc VM_Subject}"/>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding BodyTextSummary}" Header="{i18n:Loc VM_Summary}"/>
+                    </DataGrid.Columns>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding BodyStatus}" Value="{x:Static em:BodyLoadStatus.Loading}">
+                                    <Setter Property="Foreground" Value="Green"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BodyStatus}" Value="{x:Static em:BodyLoadStatus.Available}">
+                                    <Setter Property="Foreground" Value="Blue"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding BodyStatus}" Value="{x:Static em:BodyLoadStatus.Error}">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>                                
+                        </Style>
+                    </DataGrid.RowStyle>
+                </DataGrid>
+            </Grid>
+        </Grid>
+        <WebBrowser Grid.Column="1" myc:BrowserBehavior.Html="{Binding SelectedEmail.BodyHtml}" Margin="5,2,2,2"/>
+        <GridSplitter Width="4" Grid.Column="1" HorizontalAlignment="Left"/>
+
+    </Grid>
+</Window>
