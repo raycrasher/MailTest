@@ -124,7 +124,7 @@
     <value>STARTTLS</value>
   </data>
   <data name="Enum_EncryptionOptions_Unencrypted" xml:space="preserve">
-    <value>Unencrypted</value>
+    <value>暗号化されていない</value>
   </data>
   <data name="Enum_MailServerTypes_IMAP" xml:space="preserve">
     <value>IMAP</value>
@@ -132,13 +132,70 @@
   <data name="Enum_MailServerTypes_POP3" xml:space="preserve">
     <value>POP3</value>
   </data>
-  <data name="VM_MainWindow_Server" xml:space="preserve">
+  <data name="ERR_CantConnect" xml:space="preserve">
+    <value>サーバーへの接続中にエラーが発生しました.</value>
+  </data>
+  <data name="ERR_CantLoadInbox" xml:space="preserve">
+    <value>受信トレイの読み込み中にサーバーエラーが発生しました.</value>
+  </data>
+  <data name="ERR_InputNoPassword" xml:space="preserve">
+    <value>パスワードを入力してください.</value>
+  </data>
+  <data name="ERR_InputNoPort" xml:space="preserve">
+    <value>有効なポートを入力してください.</value>
+  </data>
+  <data name="ERR_InputNoServer" xml:space="preserve">
+    <value>サーバーを入力してください.</value>
+  </data>
+  <data name="ERR_InputNoUser" xml:space="preserve">
+    <value>有効なユーザー名を入力してください.</value>
+  </data>
+  <data name="VM_Date" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="VM_Emails" xml:space="preserve">
+    <value>メール</value>
+  </data>  
+  <data name="VM_Encryption" xml:space="preserve">
+    <value>暗号化</value>
+  </data>  
+  <data name="VM_From" xml:space="preserve">
+    <value>から</value>
+  </data>
+  <data name="VM_Language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="VM_Loaded" xml:space="preserve">
+    <value>ロード済み</value>
+  </data>
+  <data name="VM_Password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>  
+  <data name="VM_Port" xml:space="preserve">
+    <value>ポート</value>
+  </data>  
+  <data name="VM_Server" xml:space="preserve">
     <value>サーバ:</value>
   </data>
-  <data name="VM_MainWindow_ServerType" xml:space="preserve">
+  <data name="VM_ServerType" xml:space="preserve">
     <value>サーバータイプ:</value>
   </data>
+  <data name="VM_Start" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="VM_Subject" xml:space="preserve">
+    <value>件名</value>
+  </data>
+  <data name="VM_Summary" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="VM_Username" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="VM_Workers" xml:space="preserve">
+    <value>労働者</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>いくつかのメールアプリ</value>
+    <value>メールアプリ</value>
   </data>
 </root>

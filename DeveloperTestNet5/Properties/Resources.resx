@@ -132,6 +132,12 @@
   <data name="Enum_MailServerTypes_POP3" xml:space="preserve">
     <value>POP3</value>
   </data>
+  <data name="ERR_CantConnect" xml:space="preserve">
+    <value>An error occured while connecting to the server.</value>
+  </data>
+  <data name="ERR_CantLoadInbox" xml:space="preserve">
+    <value>A server error occurred while loading the inbox.</value>
+  </data>
   <data name="ERR_InputNoPassword" xml:space="preserve">
     <value>Please enter a password.</value>
   </data>
@@ -147,11 +153,26 @@
   <data name="VM_Date" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="VM_Emails" xml:space="preserve">
+    <value>Emails</value>
+  </data>
+  <data name="VM_Encryption" xml:space="preserve">
+    <value>Encryption</value>
+  </data>
   <data name="VM_From" xml:space="preserve">
     <value>From</value>
   </data>
   <data name="VM_Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="VM_Loaded" xml:space="preserve">
+    <value>Loaded</value>
+  </data>
+  <data name="VM_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="VM_Port" xml:space="preserve">
+    <value>Port</value>
   </data>
   <data name="VM_Server" xml:space="preserve">
     <value>Server:</value>
@@ -167,6 +188,12 @@
   </data>
   <data name="VM_Summary" xml:space="preserve">
     <value>Summary</value>
+  </data>
+  <data name="VM_Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="VM_Workers" xml:space="preserve">
+    <value>Workers</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Some Mail App</value>

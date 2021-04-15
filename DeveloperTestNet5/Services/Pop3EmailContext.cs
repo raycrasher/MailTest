@@ -137,7 +137,7 @@ namespace DeveloperTestNet5.Services
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("A server error occurred while loading the inbox.\n" + ex.Message);
+                    MessageBox.Show(Properties.Resources.ERR_CantLoadInbox + "\n" + ex.Message);
                 }
                 finally
                 {

@@ -106,6 +106,24 @@ namespace DeveloperTestNet5.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occured while connecting to the server..
+        /// </summary>
+        internal static string ERR_CantConnect {
+            get {
+                return ResourceManager.GetString("ERR_CantConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A server error occurred while loading the inbox..
+        /// </summary>
+        internal static string ERR_CantLoadInbox {
+            get {
+                return ResourceManager.GetString("ERR_CantLoadInbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a password..
         /// </summary>
         internal static string ERR_InputNoPassword {
@@ -151,6 +169,24 @@ namespace DeveloperTestNet5.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Emails.
+        /// </summary>
+        internal static string VM_Emails {
+            get {
+                return ResourceManager.GetString("VM_Emails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption.
+        /// </summary>
+        internal static string VM_Encryption {
+            get {
+                return ResourceManager.GetString("VM_Encryption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From.
         /// </summary>
         internal static string VM_From {
@@ -165,6 +201,33 @@ namespace DeveloperTestNet5.Properties {
         internal static string VM_Language {
             get {
                 return ResourceManager.GetString("VM_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded.
+        /// </summary>
+        internal static string VM_Loaded {
+            get {
+                return ResourceManager.GetString("VM_Loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        internal static string VM_Password {
+            get {
+                return ResourceManager.GetString("VM_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        internal static string VM_Port {
+            get {
+                return ResourceManager.GetString("VM_Port", resourceCulture);
             }
         }
         
@@ -210,6 +273,24 @@ namespace DeveloperTestNet5.Properties {
         internal static string VM_Summary {
             get {
                 return ResourceManager.GetString("VM_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        internal static string VM_Username {
+            get {
+                return ResourceManager.GetString("VM_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Workers.
+        /// </summary>
+        internal static string VM_Workers {
+            get {
+                return ResourceManager.GetString("VM_Workers", resourceCulture);
             }
         }
         
