@@ -159,7 +159,7 @@ namespace DeveloperTestNet5.Services
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(Properties.Resources.ERR_CantLoadInbox + "\n" + ex.Message);
+                    ReportError(Properties.Resources.ERR_CantLoadInbox, ex);
                 }
                 finally
                 {

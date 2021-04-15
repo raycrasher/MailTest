@@ -11,6 +11,12 @@ namespace DeveloperTestNet5.Services
 {
     public record ConnectionParams(string server, int port, string username, SecureString password, EncryptionOptions encryption);
 
+    public class EmailContextError
+    {
+        public string Error { get; init; }
+        public Exception Exception { get; init; }
+    }
+
     public abstract class EmailContext: INotifyPropertyChanged, IDisposable
     {
         private bool disposedValue;
@@ -35,6 +41,8 @@ namespace DeveloperTestNet5.Services
         public int NumEmails { get; protected set; } = 0;
         public int NumEmailBodiesLoaded { get; protected set; } = 0;
         public int NumWorkerThreads { get; protected set; } = 0;
+
+        public event EventHandler<EmailContextError> OnError;
 
         protected virtual void Dispose(bool disposing)
         {
@@ -66,6 +74,11 @@ namespace DeveloperTestNet5.Services
             {
                 Marshal.ZeroFreeGlobalAllocUnicode(valuePtr);
             }
+        }
+
+        protected void ReportError(string error, Exception ex)
+        {
+            OnError?.Invoke(this, new EmailContextError { Error = error, Exception = ex });
         }
     }
 

@@ -118,6 +118,7 @@ namespace DeveloperTestNet5.ViewModels
                 if (e.PropertyName == "IsLoading")
                     StartCommand.FireExecuteChanged();
             };
+            Context.OnError += (o, e) => MessageBox.Show(e.Error + "\n" + e.Exception.Message, Properties.Resources.Error);
             EmailView = CollectionViewSource.GetDefaultView(Context.Emails);
             EmailView.SortDescriptions.Add(new SortDescription("DateTime", ListSortDirection.Descending));
             Context.StartDownloadingInbox();

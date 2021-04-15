@@ -132,6 +132,9 @@
   <data name="Enum_MailServerTypes_POP3" xml:space="preserve">
     <value>POP3</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>  
   <data name="ERR_CantConnect" xml:space="preserve">
     <value>サーバーへの接続中にエラーが発生しました.</value>
   </data>
