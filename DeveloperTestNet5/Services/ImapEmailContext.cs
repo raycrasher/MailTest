@@ -38,12 +38,15 @@ namespace DeveloperTestNet5.Services
             throw new NotImplementedException();
         }
 
+
+
         public override void LoadEmailBody(Email emailBase)
         {
             Task.Run(() => {
                 try
                 {
-                    IsLoading = (++NumWorkerThreads) > 0;
+                    IncrementWorkerCount();
+
                     var email = (ImapEmail)emailBase;
                     if (email.Context != this)
                         throw new InvalidOperationException("Email does not belong to this context");
@@ -67,7 +70,7 @@ namespace DeveloperTestNet5.Services
                 }
                 finally
                 {
-                    IsLoading = (--NumWorkerThreads) > 0;
+                    DecrementWorkerCount();
                 }
             });
         }
@@ -96,9 +99,9 @@ namespace DeveloperTestNet5.Services
 
         public override void StartDownloadingInbox()
         {
-            IsLoading = (++NumWorkerThreads) > 0;
             Task.Run(() =>
             {
+                IncrementWorkerCount();
                 inboxStillLoading = true;
                 var connection = new Imap();
                 try
@@ -134,7 +137,7 @@ namespace DeveloperTestNet5.Services
                     {
                         Task.Run(() =>
                         {
-                            IsLoading = (++NumWorkerThreads) > 0;
+                            IncrementWorkerCount();
                             var conn = new Imap();
                             try
                             {
@@ -146,7 +149,7 @@ namespace DeveloperTestNet5.Services
                             {
                                 if (conn != null)
                                     conn.Close(false);
-                                IsLoading = (--NumWorkerThreads) > 0;
+                                DecrementWorkerCount();
                             }
                         });
                     }
@@ -165,7 +168,7 @@ namespace DeveloperTestNet5.Services
                 {
                     if (connection != null)
                         connection.Close(false);
-                    IsLoading = (--NumWorkerThreads) > 0;
+                    DecrementWorkerCount();
                     inboxStillLoading = false;
                 }
             });

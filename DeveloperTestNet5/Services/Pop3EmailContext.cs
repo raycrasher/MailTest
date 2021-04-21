@@ -43,7 +43,7 @@ namespace DeveloperTestNet5.Services
             Task.Run(() => {
                 try
                 {
-                    IsLoading = (++NumWorkerThreads) > 0;
+                    IncrementWorkerCount();
                     var email = (Pop3Email)emailBase;
                     if (email.Context != this)
                         throw new InvalidOperationException("Email does not belong to this context");
@@ -67,16 +67,16 @@ namespace DeveloperTestNet5.Services
                 }
                 finally
                 {
-                    IsLoading = (--NumWorkerThreads) > 0;
+                    DecrementWorkerCount();
                 }
             });
         }
 
         public override void StartDownloadingInbox()
         {
-            IsLoading = (++NumWorkerThreads) > 0;
             Task.Run(() =>
             {
+                IncrementWorkerCount();
                 inboxStillLoading = true;
                 var connection = new Pop3();
                 try
@@ -111,7 +111,7 @@ namespace DeveloperTestNet5.Services
                     {
                         Task.Run(() =>
                         {
-                            IsLoading = (++NumWorkerThreads) > 0;
+                            IncrementWorkerCount();
                             var conn = new Pop3();
                             try
                             {
@@ -125,7 +125,7 @@ namespace DeveloperTestNet5.Services
                             {
                                 if (conn != null)
                                     conn.Close(false);
-                                IsLoading = (--NumWorkerThreads) > 0;
+                                DecrementWorkerCount();
                             }
                         });
                     }
@@ -144,7 +144,7 @@ namespace DeveloperTestNet5.Services
                 {
                     if (connection != null)
                         connection.Close(false);
-                    IsLoading = (--NumWorkerThreads) > 0;
+                    DecrementWorkerCount();
                     inboxStillLoading = false;
                 }
             });

@@ -42,6 +42,8 @@ namespace DeveloperTestNet5.Services
         public int NumEmailBodiesLoaded { get; protected set; } = 0;
         public int NumWorkerThreads { get; protected set; } = 0;
 
+        private object lockObject = new();
+
         public event EventHandler<EmailContextError> OnError;
 
         protected virtual void Dispose(bool disposing)
@@ -79,6 +81,22 @@ namespace DeveloperTestNet5.Services
         protected void ReportError(string error, Exception ex)
         {
             OnError?.Invoke(this, new EmailContextError { Error = error, Exception = ex });
+        }
+
+        protected void IncrementWorkerCount()
+        {
+            lock (lockObject)
+            {
+                IsLoading = (++NumWorkerThreads) > 0;
+            }
+        }
+
+        protected void DecrementWorkerCount()
+        {
+            lock (lockObject)
+            {
+                IsLoading = (--NumWorkerThreads) > 0;
+            }
         }
     }
 
